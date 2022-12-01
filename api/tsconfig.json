@@ -1,0 +1,20 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "include": ["src/**/*", "../common/src/**/*"],
+  "compilerOptions": {
+    "lib": ["ES2019"],
+    "strict": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "~*": ["./*"],
+      "~..*": [""],
+      "common*": ["../common/src/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

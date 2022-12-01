@@ -1,0 +1,24 @@
+{
+  "extends": "@tsconfig/create-react-app/tsconfig.json",
+  "include": ["src/**/*", "../common/src/**/*", "old/storage.ts", "src/components/.tsx", "old/appRouter.tsx", "old/urlParams$ copy.ts", "public/mainData copy.ts", "public/cosmo.ts"],
+  "compilerOptions": {
+    "lib": ["ES2019"],
+    "strict": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "~*": ["./*"],
+      "common*": ["../common/src/*"],
+      "react": ["preact/compat"],
+      "react-dom": ["preact/compat"]
+    },
+    // "jsx": "preserve",
+    // "jsxFactory": "h",
+    // "jsxFragmentFactory": "Fragment",
+    // "jsxImportSource": "preact",
+    // "declaration": true,
+    // "declarationDir": "src/types"
+  }
+}

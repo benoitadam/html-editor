@@ -1,0 +1,64 @@
+{
+  "name": "api",
+  "author": "Benoit ADAM",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "targets": {
+    "default": {
+      "source": "src/index.ts",
+      "includeNodeModules": {},
+      "engines": {
+        "node": "16"
+      },
+      "context": "node"
+    }
+  },
+  "alias": {
+    "common": "../common/src",
+    "node:process": "process"
+  },
+  "scripts": {
+    "start": "yarn build && yarn launch",
+    "_eslint": "eslint -c tslint.json -p tsconfig.json --fix",
+    "prebuild": "node prebuild.js",
+    "build": "parcel build",
+    "launch": "node -r dotenv/config --enable-source-maps --inspect dist/index.js",
+    "clean": "rm -r dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker-start": "docker build -f ./Dockerfile -t api . && docker run -dp 3000:3000 api",
+    "report": "npx parcel build --reporter @parcel/reporter-bundle-analyzer",
+    "prettify": "prettier --write \"./src/**/*.{ts,tsx}\"",
+    "common-prettify": "prettier --write \"../common/**/*.{ts,tsx}\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@aws-sdk/client-s3": "^3.145.0",
+    "@fastify/cors": "^8.1.0",
+    "@parcel/reporter-bundle-analyzer": "^2.7.0",
+    "@tsconfig/node16": "^1.0.3",
+    "@types/lodash": "^4.14.184",
+    "@types/node": "^18.7.4",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "cors": "^2.8.5",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.23.0",
+    "fastify": "^4.5.3",
+    "firebase-admin": "^11.0.1",
+    "image-size": "^1.0.2",
+    "lodash": "^4.17.21",
+    "nodemailer": "^6.7.8",
+    "parcel": "^2.6.2",
+    "prettier": "^2.7.1",
+    "puppeteer-core": "^17.1.3",
+    "typescript": "^4.8.2"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "singleQuote": true
+  }
+}

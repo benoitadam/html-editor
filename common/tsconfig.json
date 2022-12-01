@@ -1,0 +1,15 @@
+{
+  "include": ["src/**/*", "../client/src/helpers/setTitle.ts"],
+  "compilerOptions": {
+    "lib": ["ES2019"],
+    "strict": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "common*": ["./src/*"],
+    },
+    "esModuleInterop": true
+  }
+}

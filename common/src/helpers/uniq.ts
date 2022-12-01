@@ -1,0 +1,1 @@
+export default (arr: string[]): string[] => Object.keys(Object.fromEntries(arr.map(v => [v])));

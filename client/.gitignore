@@ -1,0 +1,10 @@
+.parcel-cache
+dist
+node_modules
+old
+parcel-bundle-reports
+public
+src/app.generated.json
+.env
+publish.ps1
+yarn-error.log
