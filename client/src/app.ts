@@ -1,13 +1,12 @@
 import appGenerated from './app.generated.json';
 
-global = (window || self || global || globalThis) as any;
-global.global = global;
+const win = (window || self || global || globalThis) as any;
+win.win = win;
 
 export type AppGenerated = typeof appGenerated;
 export interface App extends AppGenerated {
   app: any;
-  global: any;
-  fullVersion: string;
+  win: any;
   appUrl: string;
   apiUrl: string;
   authUrl: string;
@@ -15,12 +14,12 @@ export interface App extends AppGenerated {
   gqlWsUrl: string;
 }
 
-const app: App = (global as any).app || ((global as any).app = {} as any);
+const app: App = win.app || (win.app = {});
 
 Object.assign(app, appGenerated);
 
 app.app = app;
-app.global = global;
+app.win = win;
 app.appUrl = `https://${app.host}`;
 app.apiUrl = `https://${app.host}/api`;
 app.authUrl = `https://${app.host}/api/auth`;

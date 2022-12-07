@@ -1,19 +1,20 @@
+require('dotenv').config({ path: require('path').resolve(process.cwd(), '../', '.env') });
 const { version } = require('./package.json');
+const jsonPath = './src/app.generated.json';
 
-let build = {};
-try { build = require('./src/build.json'); } catch(e) {}
+let app = {};
+try { app = require(jsonPath); } catch(e) {}
 
-build.time = Date.now();
+app.time = Date.now();
+app.host = process.env.HOST;
+app.name = process.env.NAME;
 
-if (build.version !== version) {
-    build.version = version;
-    build.vTime = build.time;
-    build.minor = 0;
-} else {
-    build.minor = (build.minor||0) + 1;
-}
+const [major, minor] = version.split('.');
+const [,, revision] = (app.version||version).split('.');
+app.version = [major, minor, Number(revision||0)+1].join('.');
 
-require('fs').writeFileSync('./src/build.json', JSON.stringify(build, null, 2));
+console.debug({ app });
+require('fs').writeFileSync(jsonPath, JSON.stringify(app, null, 2));
 
 const rm = (path) => {
     try {

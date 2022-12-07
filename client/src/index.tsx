@@ -1,33 +1,39 @@
-import appInit from './appInit';
+import app from './app';
+import { lang$ } from './appAll';
+import * as appAll from './appAll';
 import gqlInit from './gqlInit';
-import { routerAdd, routerForceRefresh } from './helpers/router';
+import router from './helpers/router';
 import { siteRoute, stopAutoRefresh } from './site';
-import '../public/cosmo';
 
 (async () => {
-  console.debug('appInit');
-  appInit();
+  console.debug('app');
+  Object.assign(app, appAll);
   gqlInit();
 
-  routerAdd('', siteRoute);
-  routerAdd(':siteKey', siteRoute);
-  routerAdd(':siteKey/:sitePage', siteRoute);
+  router.add('/', siteRoute);
+  router.add('/:siteKey', siteRoute);
+  router.add('/:siteKey/:sitePage', siteRoute);
 
-  routerAdd('clear', () => {
+  router.add('/clear', () => {
     localStorage.clear();
     location.href = '/';
   });
 
-  routerAdd('admin', () => {
+  router.add('/admin', () => {
     console.debug('admin import');
     stopAutoRefresh();
     import('./admin');
   });
 
-  routerAdd('device', () => {
+  router.add('/device', () => {
     console.debug('device import');
     import('./device');
   });
 
-  routerForceRefresh();
+  router.updated$.subscribe(() => {
+    const lang = router.current.params.lang;
+    if (lang) lang$.next(lang);
+  });
+
+  router.forceRefresh();
 })();

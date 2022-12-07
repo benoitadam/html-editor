@@ -1,5 +1,5 @@
 
-import { routerCurrent$ } from "~src/helpers/router";
+import router from "~src/helpers/router";
 import useMessager from "./useMessager";
 
-export default () => useMessager(routerCurrent$);
+export default () => useMessager(router.updated$);

@@ -9,6 +9,7 @@ import useRouter from '~src/hooks/useRouter';
 import { siteRepo } from 'common/models/gqlRepos';
 import { importND } from 'common/box';
 import isUuid from '~src/helpers/isUuid';
+import { site$ } from '~src/site';
 
 const CanNotEdit = () => (
     <Box color="danger">
@@ -20,13 +21,14 @@ export default () => {
     const session = useMessager(session$);
     const route = useRouter();
     const params = route.params;
+    const adminPage = params.admin;
   
     console.debug('AdminContent', location, session, params);
 
     if (!session.isAuth || params.admin === 'auth') return <Auth />;
     if (!session.canEdit) return <CanNotEdit />;
 
-    if (params.admin === 'device') {
+    if (adminPage === 'device') {
       const deviceId = params.deviceId;
       if (deviceId) {
         // return <DeviceEdit deviceId={deviceId} />;
@@ -34,16 +36,17 @@ export default () => {
       // return <DeviceList />;
     }
 
-    if (params.admin === 'site') {
+    if (adminPage === 'site') {
       const key = params.siteKey;
       if (key) {
         if (isUuid(key)) {
           siteRepo.get(key, ['id', 'key', 'title', 'items', 'updatedAt']).then(site => {
-            adminSite$.next(site);
+            site$.next(site);
             importND(site?.items || {});
           });
         } else {
           siteRepo.find({ key }, ['id', 'key', 'title', 'items', 'updatedAt']).then(site => {
+            site$.next(site);
             importND(site?.items || {});
           });
         }
@@ -52,7 +55,7 @@ export default () => {
       // return <SiteList />;
     }
 
-    if (params.admin === 'project') {
+    if (adminPage === 'project') {
       const projectId = params.projectId;
       if (projectId) {
         // return <ProjectEdit deviceId={deviceId} />;

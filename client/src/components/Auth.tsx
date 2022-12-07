@@ -12,13 +12,13 @@ import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import useLocation from 'react-use/lib/useLocation';
-import HistoryLink from './HistoryLink';
+import HistoryLink from './RouterLink';
 import { authSignIn, authSignUp, authPasswordReset, authRefreshToken } from '~src/api/auth';
 import styled from '@mui/material/styles/styled';
 import app from '~src/app';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import { routerParams, routerPush } from '~src/helpers/router';
+import router from '~src/helpers/router';
 
 const Container = styled('div')({
   display: 'flex',
@@ -49,7 +49,7 @@ const stageMap: Record<AuthStage, boolean> = {
   'password-reset': true,
 };
 
-const loadParams = routerParams();
+const loadParams = router.current.params;
 
 export default function Auth() {
   const location = useLocation();
@@ -132,7 +132,7 @@ export default function Auth() {
         >
           {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values, status, setErrors }) => {
             if (loadParams.refreshToken) {
-              authRefreshToken(String(loadParams.refreshToken)).finally(() => routerPush('/admin'));
+              authRefreshToken(String(loadParams.refreshToken)).finally(() => router.push('/admin'));
               delete loadParams.refreshToken;
             }
 

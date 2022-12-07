@@ -11,7 +11,7 @@ import PreviewIcon from '@mui/icons-material/Preview';
 // import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 // import PresentToAllIcon from '@mui/icons-material/PresentToAll';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import AdminLink from './HistoryLink';
+import AdminLink from './RouterLink';
 import { DeviceCommand, DeviceModel } from 'common/models/interfaces';
 import { MINUTE } from 'common/helpers/time';
 import { formatDistance } from 'date-fns/esm';

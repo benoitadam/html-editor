@@ -4,8 +4,8 @@ const info = require('./src/info.json');
 const buildTime = Date.now();
 const versionTime = (info.version === version ? info.versionTime : 0) || buildTime;
 
-const ENV_COPY_ALERT = ''.padStart(500, '\n\n\n\n\n##### COPY FROM ../server/app/.env #####\n\n\n\n\n');
-fs.writeFileSync('.env', ENV_COPY_ALERT + fs.readFileSync('../server/app/.env'));
+const ENV_COPY_ALERT = ''.padStart(500, '\n\n\n\n\n##### COPY FROM ../.env #####\n\n\n\n\n');
+fs.writeFileSync('.env', ENV_COPY_ALERT + fs.readFileSync('../.env'));
 
 fs.writeFileSync('./src/info.json', JSON.stringify({
     ...info,

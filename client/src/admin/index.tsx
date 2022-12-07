@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AdminTopBar from '../components/AdminTopBar';
 import AdminContent from '../components/AdminContent';
 import app from '../app';
-import { routerAdd, routerForceRefresh, RouterValue } from '~src/helpers/router';
+import router from '~src/helpers/router';
 
 console.debug('admin loaded');
 
@@ -19,21 +19,21 @@ const initAdmin = async () => {
   setDefaultOptions({ locale: dateLocaleFr });
   await addFont('Roboto');
 
-  routerAdd('admin', null);
+  router.add('/admin', null);
 
-  routerAdd('admin/auth', null, { admin: 'auth' });
+  router.add('/admin/auth', null, { admin: 'auth' });
 
-  routerAdd('admin/site', null, { admin: 'site' });
-  routerAdd('admin/:siteKey', null, { admin: 'site' });
-  routerAdd('admin/:siteKey/:sitePage', null, { admin: 'site' });
+  router.add('/admin/site', null, { admin: 'site' });
+  router.add('/admin/:siteKey', null, { admin: 'site' });
+  router.add('/admin/:siteKey/:sitePage', null, { admin: 'site' });
 
-  routerAdd('admin/device', null, { admin: 'device' });
-  routerAdd('admin/device/:deviceId', null, { admin: 'device' });
+  router.add('/admin/device', null, { admin: 'device' });
+  router.add('/admin/device/:deviceId', null, { admin: 'device' });
 
-  routerAdd('admin/project', null, { admin: 'project' });
-  routerAdd('admin/project/:projectId', null, { admin: 'project' });
+  router.add('/admin/project', null, { admin: 'project' });
+  router.add('/admin/project/:projectId', null, { admin: 'project' });
 
-  routerForceRefresh();
+  router.forceRefresh();
 
   authRefresh();
   

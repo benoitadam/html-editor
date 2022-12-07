@@ -78,7 +78,7 @@ const BoxItem = ({ tab, id, ...props }: BoxProps & { tab: number; id?: string })
   const t = n.t || 'box';
   const Icon = iconByType[t] || iconByType.box;
 
-  const label = n.label || n.title || n.ctn || n.alt || n.cls || 'Élément';
+  const label = n.label || n.title || n.ctn || n.alt || n.cls || n.page || 'Élément';
   const labelShort = label.length > 30 ? label.substring(0, 27).trimEnd() + '...' : label;
 
   if (!id) return null;

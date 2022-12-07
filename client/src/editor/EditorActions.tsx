@@ -12,7 +12,7 @@ import { selectChild, selectDown, selectExport, selectId$, selectImport, selectP
 import { Tooltip } from '@mui/material';
 import { exportND, importND, addIndex, getRootB, getB, ROOT_ID } from 'common/box';
 import { siteRepo } from 'common/models/gqlRepos';
-import site$ from '~src/site/site$';
+import { site$ } from '~src/site';
 
 export interface EditorActionsProps {}
 

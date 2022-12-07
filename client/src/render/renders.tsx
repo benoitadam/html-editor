@@ -6,9 +6,9 @@ import RenderContent from './RenderContent';
 import { RenderFactory, renderAdd, renderChildren, RenderDefault, RenderProps } from './RenderFactory';
 import RenderPrice from './RenderPrice';
 import useMessager from '~src/hooks/useMessager';
-import sitePage$ from '~src/site/sitePage$';
 import setTitle from '~src/helpers/setTitle';
 import app from '~src/app';
+import router from '~src/helpers/router';
 
 renderAdd('box', RenderDefault);
 renderAdd('btn', RenderDefault);
@@ -26,9 +26,9 @@ renderAdd('header', ({ b, a }: RenderProps) => (
 ));
 
 renderAdd('page', ({ b, a }) => {
-  useMessager(sitePage$);
-  const page = sitePage$.value || getHomePage();
-  if (page !== b.n.page) return null;
+  useMessager(router.updated$);
+  const sitePage = router.current.params.sitePage || getHomePage();
+  if (sitePage !== b.n.page) return null;
   setTitle(b.n.pageTitle);
   return <div {...a}>{renderChildren(b)}</div>;
 });

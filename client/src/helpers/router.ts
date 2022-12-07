@@ -5,7 +5,20 @@ const queryDecode = (s: string) => decodeURIComponent(s.replace(PLUS_EXP, ' '));
 
 export type RouterHandler = (route: RouterValue) => void;
 
-export type RouterParams = Record<string, string>;
+// export type RouterParams = Record<string, string>;
+export type RouterParams = {
+    admin?: string,
+    siteKey?: string,
+    sitePage?: string,
+    projectId?: string,
+    deviceId?: string,
+    siteId?: string,
+    lang?: string;
+
+    // auth
+    refreshToken?: string;
+    error?: string;
+};
 
 export type RouterNode = {
     children?: { [part: string]: RouterNode },
@@ -21,14 +34,15 @@ export type RouterValue = RouterNode & {
     params: RouterParams,
 };
 
-export const routerRoot: RouterNode = {};
+const root: RouterNode = {};
 
-export const routerCurrent$ = messager<RouterValue>({ host: '', path: '', params: {} });
+const updated$ = messager<RouterValue>({ host: '', path: '', params: {} });
 
-export const routerAdd = (match: string, handler: RouterHandler|null, params?: RouterParams) => {
+const add = (match: string, handler?: RouterHandler|null, params?: RouterParams) => {
+    console.debug('router.add', match, params);
     const parts = match.split('/');
     if (parts[0] === '') parts.splice(0,1);
-    let node = routerRoot;
+    let node = root;
     for (const part of parts) {
         const children = node.children || (node.children = {});
         if (part[0] === ':') {
@@ -43,21 +57,21 @@ export const routerAdd = (match: string, handler: RouterHandler|null, params?: R
     node.params = params;
 };
 
-export const routerResolve = (path: string): RouterValue => {
+const resolve = (path: string): RouterValue => {
     let host = location.host;
     
     const queryIndex = path.indexOf('?');
     const query = queryIndex === -1 ? '' : path.substring(queryIndex + 1);
     const pathWithoutQuery = queryIndex === -1 ? path : path.substring(0, queryIndex);
     const parts = pathWithoutQuery.split('/');
-    let node = routerRoot;
-    let params: RouterParams = {};
+    let node = root;
+    let params: Record<string, string> = {};
 
-    if (parts[0] === '') parts.splice(0,1);
     if (parts[0] && parts[0].endsWith(':') && parts[1] === '') {
         host = parts[2];
         parts.splice(0,3);
     }
+    if (parts[0] === '') parts.splice(0,1);
 
     parts.forEach(part => {
         const children = node.children;
@@ -81,50 +95,47 @@ export const routerResolve = (path: string): RouterValue => {
         });
     }
 
-    return { ...node, host, path, params };
+    const result: RouterValue = { ...node, host, path, params };
+    console.debug('router.resolve', result)
+    return result;
 };
 
-export const routerForceRefresh = () => {
-    console.debug('routerForceRefresh');
-    const value = routerResolve(location.href);
-    routerCurrent$.next(value);
+const forceRefresh = () => {
+    console.debug('router.forceRefresh');
+    const value = resolve(location.href);
+    updated$.next(value);
     if (value.handler) value.handler(value);
 }
 
-export const routerRefresh = (event?: Event|string) => {
+const refresh = (event?: Event|string) => {
     const type = event ? typeof event === 'string' ? event : event.type : '';
-    console.debug('routerRefresh', type, location.href);
-    if (routerCurrent$.value.path === location.href) return;
-    routerForceRefresh();
+    console.debug('router.refresh', type, location.href);
+    if (updated$.value.path === location.href) return;
+    forceRefresh();
 }
 
-export const routerPush = (route: string) => {
+const push = (route: string) => {
+    console.debug('router.push', route);
     history.pushState({}, "", route);
-    routerRefresh();
+    forceRefresh();
 }
 
-export const routerReplace = (route: string) => {
-    history.replaceState({}, "", route);
-    routerRefresh();
-}
-
-export const routerBack = () => {
+const back = () => {
+    console.debug('router.back');
     history.back();
-    routerRefresh();
+    forceRefresh();
 }
 
-export const routerParams = () => routerCurrent$.value.params;
-
-window.addEventListener('locationchange', routerRefresh);
-window.addEventListener('hashchange', routerRefresh);
-window.addEventListener('popstate', routerRefresh);
-setInterval(routerRefresh, 1000);
+window.addEventListener('locationchange', refresh);
+window.addEventListener('hashchange', refresh);
+window.addEventListener('popstate', refresh);
+setInterval(refresh, 2000);
 
 const _history = (type: string) => {
     const fun = (history as any)[type];
     (history as any)[type] = function () {
         const r = fun.apply(history, arguments);
-        routerRefresh('history_' + type);
+        refresh('history_' + type);
         return r;
     };
 }
@@ -134,76 +145,22 @@ _history('replaceState');
 _history('back');
 
 export const router = {
-    current$: routerCurrent$,
-    current: routerCurrent$.value,
-    root: routerRoot,
-    add: routerAdd,
-    resolve: routerResolve,
-    push: routerPush,
-    replace: routerReplace,
-    back: routerBack,
-    refresh: routerRefresh,
-    forceRefresh: routerForceRefresh,
+    updated$,
+    current: updated$.value,
+    root,
+    add,
+    resolve,
+    push,
+    back,
+    refresh,
+    forceRefresh,
 };
 
-routerCurrent$.subscribe(current => {
-    router.current = current;
-});
+updated$.subscribe(current => router.current = current);
 
-routerForceRefresh();
+forceRefresh();
 
 export default router;
-
-// router.add('', (o) => console.debug('app', o));
-// router.add(':siteId', (o) => console.debug('site1', o));
-// router.add('site/:siteId', (o) => console.debug('site2', o));
-// router.add('site/:siteId/:page', (o) => console.debug('site3', o));
-// router.add('clear', (o) => console.debug('clear', o));
-// router.add('admin', (o) => console.debug('admin1', o));
-// router.add('admin/auth', (o) => console.debug('admin2', o));
-// router.add('admin/sites', (o) => console.debug('admin3', o));
-// router.add('admin/sites/:siteId', (o) => console.debug('admin4', o));
-// router.add('admin/devices', (o) => console.debug('admin5', o));
-// router.add('admin/devices/:deviceId', (o) => console.debug('admin6', o));
-// router.add('device', (o) => console.debug('device', o));
-// router.add('device/:siteId', (o) => console.debug('device1', o));
-// router.add('device/:siteId/:page', (o) => console.debug('device2', o));
-
-// const testRoute = (test: string, match: string, params?: Record<string, string>) => {
-//     const r = router.resolve(test);
-//     if (r.match === match) {
-//         console.debug(test, match, 'ok', r);
-//     } else {
-//         console.error(test, match, 'ko', r);
-//     }
-// }
-
-// testRoute('a', ':siteId');
-// testRoute('b', ':siteId');
-// testRoute('site/a', 'site/:siteId', { siteId: 'a' });
-// testRoute('site/a/b', 'site/:siteId/:page', { siteId: 'a', page: 'b' });
-// testRoute('clear', 'clear');
-// testRoute('admin', 'admin');
-// testRoute('admin/auth', 'admin/auth');
-// testRoute('admin/sites', 'admin/sites');
-// testRoute('admin/sites/a', 'admin/sites/:siteId', { siteId: 'a' });
-// testRoute('admin/devices', 'admin/devices');
-// testRoute('admin/devices/a', 'admin/devices/:deviceId', { deviceId: 'a' });
-// testRoute('device', 'device');
-// testRoute('device/a', 'device/:siteId');
-// testRoute('device/a/b', 'device/:siteId/:page');
-
-// router.push('/cosmo/page1');
-// router.push('/cosmo/page2');
-// router.push('/cosmo/page3');
-// router.replace('/cosmo/page4');
-// router.push('/cosmo/page5');
-// router.back();
-// router.back();
-// router.push('/cosmo/page6');
-// router.back();
-// router.push('/cosmo/page7');
-
 
 
 

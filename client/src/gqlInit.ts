@@ -5,7 +5,8 @@ import session$ from '~src/messagers/session$';
 
 export const initGql = () => {
   gqlRegister(async (q, vars) => {
-    const headers = session$.value?.headers;
+    const session = session$.value;
+    const headers = (session.expireTime||0) > Date.now() ? session.headers : {};
     const res = await req.post(app.gqlUrl + '?t=' + Date.now(), { query: q, variables: vars }, { headers });
     return res.data;
   });
