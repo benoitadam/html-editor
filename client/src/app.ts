@@ -1,29 +1,18 @@
 import appGenerated from './app.generated.json';
 
-const win = (window || self || global || globalThis) as any;
-win.win = win;
-
 export type AppGenerated = typeof appGenerated;
-export interface App extends AppGenerated {
-  app: any;
-  win: any;
-  appUrl: string;
-  apiUrl: string;
-  authUrl: string;
-  gqlUrl: string;
-  gqlWsUrl: string;
-}
+export interface App extends AppGenerated { app: any; win: any; }
 
-const app: App = win.app || (win.app = {});
+// const win = (window || self || global || globalThis) as any;
+// const app: App = win.app || (win.app = {});
+// Object.assign(app, appGenerated);
 
-Object.assign(app, appGenerated);
-
+const app = appGenerated as App;
 app.app = app;
-app.win = win;
-app.appUrl = `https://${app.host}`;
-app.apiUrl = `https://${app.host}/api`;
-app.authUrl = `https://${app.host}/api/auth`;
-app.gqlUrl = `https://${app.host}/api/gql`;
-app.gqlWsUrl = `wss://${app.host}/api/gql`;
+app.win = window;
+app.win[app.name] = app;
+app.win.__app = app;
+
+// (document as any)._app = app;
 
 export default app;
