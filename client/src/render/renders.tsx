@@ -9,6 +9,7 @@ import useMessager from '~src/hooks/useMessager';
 import setTitle from '~src/helpers/setTitle';
 import app from '~src/app';
 import router from '~src/helpers/router';
+import { getSitePage } from '~src/site/sitePage';
 
 renderAdd('box', RenderDefault);
 renderAdd('btn', RenderDefault);
@@ -27,7 +28,7 @@ renderAdd('header', ({ b, a }: RenderProps) => (
 
 renderAdd('page', ({ b, a }) => {
   useMessager(router.updated$);
-  const sitePage = router.current.params.sitePage || getHomePage();
+  const sitePage = getSitePage();
   if (sitePage !== b.n.page) return null;
   setTitle(b.n.pageTitle);
   return <div {...a}>{renderChildren(b)}</div>;
