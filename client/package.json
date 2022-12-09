@@ -20,7 +20,7 @@
         "node": "16"
       }
     },
-    "default": {
+    "www": {
       "includeNodeModules": {},
       "source": "src/index.html"
     }
