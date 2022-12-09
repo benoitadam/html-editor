@@ -8,6 +8,11 @@ try { app = require(jsonPath); } catch(e) {}
 app.time = Date.now();
 app.host = process.env.HOST;
 app.name = process.env.NAME;
+app.appUrl = `https://${app.host}`;
+app.apiUrl = `https://${app.host}/api`;
+app.authUrl = `https://${app.host}/api/auth`;
+app.gqlUrl = `https://${app.host}/api/gql`;
+app.gqlWsUrl = `wss://${app.host}/api/gql`;
 
 const [major, minor] = version.split('.');
 const [,, revision] = (app.version||version).split('.');
