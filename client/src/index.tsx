@@ -3,7 +3,7 @@ import { lang$ } from './appAll';
 import * as appAll from './appAll';
 import gqlInit from './gqlInit';
 import router from './helpers/router';
-import { siteRoute, stopAutoRefresh } from './site';
+import { getSitePage, siteRoute, stopAutoRefresh } from './site';
 
 (async () => {
   console.debug('app');
@@ -33,6 +33,8 @@ import { siteRoute, stopAutoRefresh } from './site';
   router.updated$.subscribe(() => {
     const lang = router.current.params.lang;
     if (lang) lang$.next(lang);
+    const pageClass = 'page--' + getSitePage();
+    document.body.className = pageClass;
   });
 
   router.forceRefresh();
