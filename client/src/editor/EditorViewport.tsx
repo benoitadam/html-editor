@@ -10,7 +10,17 @@ export default () => {
   return (
     <Box
       className="editor_viewport"
-      sx={{ position: 'relative', overflow: 'hidden', height: '100%', flex: 1, background: '#000' }}
+      sx={{
+        position: 'relative',
+        overflow: 'hidden',
+        height: '100%',
+        flex: 1,
+        background: '#000',
+        '.price-0': {
+          visibility: 'visible',
+          opacity: 0.1,
+        }
+      }}
     >
       <Box
         className="editor_pan"
