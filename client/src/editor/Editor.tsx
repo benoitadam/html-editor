@@ -9,6 +9,7 @@ import { selectId$ } from '~src/helpers/select';
 import useMessager from '~src/hooks/useMessager';
 import { updateN } from 'common/box';
 import { toNbr } from 'common/helpers/to';
+import CodeEditorLazy from './CodeEditorLazy';
 
 const initRenderContent = renderContentGet();
 renderContentSet((props: RenderContentProps) => {
@@ -19,7 +20,7 @@ renderContentSet((props: RenderContentProps) => {
     const value = (e.target as HTMLDivElement).innerHTML;
     console.debug('Editor RenderContent onBlur', props, value);
     if (value !== null) updateN(props.b.id, { [p]: value });
-  }
+  };
   return initRenderContent(props);
 });
 
@@ -32,7 +33,7 @@ renderPriceSet((props: RenderPriceProps) => {
     const value = toNbr((e.target as HTMLDivElement).innerText, null);
     console.debug('Editor RenderPrice onBlur', props, value);
     if (value !== null) updateN(props.b.id, { [p]: value });
-  }
+  };
   return initRenderPrice(props);
 });
 
@@ -53,7 +54,20 @@ export default function Editor() {
         overflow: 'hidden',
       }}
     >
-      <EditorViewport />
+      <Box
+        sx={{
+          position: 'relative',
+          overflow: 'hidden',
+          height: '100%',
+          flex: 1,
+          background: '#000',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <EditorViewport />
+        <CodeEditorLazy />
+      </Box>
       <Box
         className="editor_side"
         boxShadow={2}
