@@ -9,7 +9,7 @@ import isAdvanced$ from './isAdvanced$';
 import { clipboardCopy, clipboardPaste } from '~src/helpers/clipboard';
 import { editorHistoryRedo, editorHistoryUndo } from './editorHistory';
 import { selectChild, selectDown, selectExport, selectId$, selectImport, selectParent, selectRemove, selectUp } from '~src/helpers/select';
-import { Tooltip } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 import { exportND, importND, addIndex, getRootB, getB, ROOT_ID } from 'common/box';
 import { siteRepo } from 'common/models/gqlRepos';
 import { site$ } from '~src/site';

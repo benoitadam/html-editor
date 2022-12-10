@@ -24,9 +24,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import { createContext, DragEvent, useContext, useMemo, useRef, useState } from 'react';
+import { createContext, DragEvent, useContext, useMemo } from 'react';
 import { clipboardCopy, clipboardPaste } from '~src/helpers/clipboard';
-import { Tooltip } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 import useMessager from '~src/hooks/useMessager';
 
 const iconByType: Record<string, (props: any) => JSX.Element> = {
