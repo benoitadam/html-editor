@@ -22,34 +22,12 @@
     },
     "www": {
       "includeNodeModules": {},
-      "source": "src/index.html"
-    }
-  },
-  "old": {
-    "targets": {
-      "modern": {
-        "includeNodeModules": {},
-        "engines": {
-          "browsers": "Chrome 80"
-        }
-      },
-      "legacy": {
-        "includeNodeModules": {},
-        "engines": {
-          "browsers": "> 0.5%, last 2 versions, not dead"
-        }
-      },
-      "electron": {
-        "includeNodeModules": {},
-        "source": "src/electron/main.ts",
-        "engines": {
-          "node": "16"
-        },
-        "context": "electron-main"
+      "source": "src/index.html",
+      "engines": {
+        "browsers": "> 0.5%, last 2 versions, not dead"
       }
     }
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "prebuild": "node prebuild.js",
     "parcel": "parcel",
