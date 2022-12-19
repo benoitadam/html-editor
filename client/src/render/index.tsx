@@ -11,7 +11,9 @@ export * from './renders';
 
 propHelpers.setTitle = setTitle;
 propHelpers.fontImport = (font: string|string[]) => toArr(font).forEach(addFont);
-propHelpers.addCss = addCss;
+propHelpers.addCss = (key: string, css: string) => {
+    addCss(key, css.replace(/\\n/g, '\n'));
+}
 
 // export const renderChildren = (n: N) => [];
 

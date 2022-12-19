@@ -206,6 +206,7 @@ export interface NFull {
   veg: boolean,
   bio: boolean,
   aoc: boolean,
+  aop: boolean,
 
   lang: string;
 }

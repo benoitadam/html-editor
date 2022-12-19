@@ -200,6 +200,7 @@ const map: Record<keyof NFull, Prop> = {
     veg: p('bool', (b, v) => v && (b.c.veg = 1)),
     bio: p('bool', (b, v) => v && (b.c.bio = 1)),
     aoc: p('bool', (b, v) => v && (b.c.aoc = 1)),
+    aop: p('bool', (b, v) => v && (b.c.aop = 1)),
     lang: p('str', (_, v) => propLangMap[v] = true),
     tr: p('obj'),
 }

@@ -14,10 +14,10 @@
       "react": ["preact/compat"],
       "react-dom": ["preact/compat"]
     },
-    "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxImportSource": "preact",
-    "jsxFragmentFactory": "Fragment",
+    // "jsx": "preserve",
+    // "jsxFactory": "h",
+    // "jsxImportSource": "preact",
+    // "jsxFragmentFactory": "Fragment",
     // "declaration": true,
     // "declarationDir": "src/types"
   }

@@ -50,6 +50,14 @@ renderAdd('img', ({ b, a }) => {
 //   ) : null;
 // });
 
+renderAdd('cat', ({ b, a }: RenderProps) => (
+  <div {...a}>
+    <RenderContent t="h3" b={b} p="title" a={{ className: 'cat_title' }} />
+    <RenderContent a={{ className: 'cat_desc' }} b={b} p="desc" />
+    {renderChildren(b)}
+  </div>
+));
+
 export const VegSvg = () => (
   <svg viewBox="0 0 24 24">
     <path d="M21.878.464l-2.486.557c-2.128.418-2.466.544-3.414 1.246-1.346 1.002-2.287 2.937-2.281 4.694.007.67.106 1.147.219 1.021a3 3 0 0 0 .199-.424c.404-.975 1.578-2.46 2.579-3.262.51-.411 1.538-.815 1.538-.603 0 .073-.351.51-.769.948-.391.418-.524.59-1.26 1.657-.762 1.121-1.757 3.123-2.426 4.906l-1.446 4.144-1.107 3.196c-.106.039-.397-.909-1.007-3.262-.948-3.686-1.353-4.953-2.321-7.26-.663-1.571-1.538-2.831-3.315-4.76-.974-1.068-2.36-2.089-3.195-2.367-.544-.186-.59-.093-.179.365C3.143 3.441 4.263 5.059 5.45 7.359c1.001 1.956 1.69 3.898 2.943 8.354l1.247 5.171.603 2.672a.39.39 0 0 0 .226.166 6.76 6.76 0 0 0 1.544 0c.345-.1.411-.372.889-3.501a36.28 36.28 0 0 1 1.133-5.271c.922-3.222 1.903-5.582 2.5-5.967.086-.053.51-.159.955-.232 1.723-.285 3.109-1.047 4.09-2.26.656-.809.829-1.406.995-3.395.086-1.054.139-1.352.338-1.982.126-.411.212-.783.199-.829-.047-.119-.153-.106-1.234.179z" />
@@ -72,6 +80,7 @@ export const VegIcon = () => <div className="icon veg"><VegSvg /></div>;
 export const VgnIcon = () => <div className="icon vgn"><VegSvg /><b>vegan</b></div>;
 export const BioIcon = () => <div className="icon bio"><BioSvg /></div>;
 export const AocIcon = () => <div className="icon aoc"><AocSvg /></div>;
+export const AopIcon = () => <div className="icon aop">AOP</div>;
 
 renderAdd('product', ({ b, a }) => (
   <div {...a}>
@@ -82,6 +91,7 @@ renderAdd('product', ({ b, a }) => (
       {b.n.veg && <VegIcon />}
       {b.n.bio && <BioIcon />}
       {b.n.aoc && <AocIcon />}
+      {b.n.aop && <AopIcon />}
       <div className="flex"></div>
       <RenderContent a={{ className: 'info2' }} b={b} p="info2" />
       <RenderPrice b={b} p="price" />

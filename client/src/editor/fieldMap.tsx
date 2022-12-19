@@ -149,6 +149,7 @@ const map: Record<keyof NFull, (prop: string) => FieldInfo> = {
   veg: p('Végé', 'bool'),
   bio: p('BIO', 'bool'),
   aoc: p('AOC', 'bool'),
+  aop: p('AOP', 'bool'),
 
   lang: p('Langue (ISO)', 'str'),
   tr: p('Traduction', 'obj'),
@@ -162,5 +163,6 @@ fieldMap.vgn.tooltip = 'Aucun produit animal : viande, poisson, œuf, lait, from
 fieldMap.veg.tooltip = 'Aucune chair d’origine animale : viande et poisson';
 fieldMap.bio.tooltip = 'Produit BIO qui exclut l’usage des produits chimiques, OGM, insecticides…';
 fieldMap.aoc.tooltip = 'Produit d’Appellation d’Origine Contrôlée';
+fieldMap.aop.tooltip = 'Produit d’Appellation d’Origine Protégée';
 
 export default fieldMap;

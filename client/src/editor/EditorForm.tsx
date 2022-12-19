@@ -104,6 +104,7 @@ export default ({ id }: { id: string }) => {
             <Field p="veg" />
             <Field p="bio" />
             <Field p="aoc" />
+            <Field p="aop" />
           </Row>
           <Field p="title" />
           <Field p="info" />
