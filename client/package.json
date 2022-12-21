@@ -1,8 +1,9 @@
 {
   "name": "client",
-  "version": "2.4",
+  "version": "2.5",
   "license": "MIT",
   "includeNodeModules": {},
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "alias": {
     "common": "../common/src",
     "crypto": "./src/alias/crypto",
@@ -69,6 +70,7 @@
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.2",
+    "@parcel/service-worker": "^2.8.2",
     "@uiw/react-codemirror": "^4.19.2",
     "date-fns": "^2.29.2",
     "deep-equal": "^2.0.5",

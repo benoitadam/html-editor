@@ -38,4 +38,11 @@ import { getSitePage, siteRoute, stopAutoRefresh } from './site';
   });
 
   router.forceRefresh();
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register(
+      new URL('sw.ts', import.meta.url),
+      {type: 'module'}
+    );
+  }
 })();

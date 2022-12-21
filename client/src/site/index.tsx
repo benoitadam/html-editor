@@ -1,27 +1,29 @@
-import { GqlProps } from 'common/models/gqlRepo';
 import { siteRepo } from 'common/models/gqlRepos';
 import { importND, ROOT_ID } from 'common/box';
 import setTitle from '~src/helpers/setTitle';
-import { render } from 'react-dom';
+import { render } from 'preact';
 import RenderFactory from '~src/render/RenderFactory';
 import { RouterValue } from '~src/helpers/router';
 import site$ from './site$';
 import siteProps from './siteProps';
 import { startAutoRefresh } from './autoRefresh';
+import { SiteModel } from 'common/models/interfaces';
 
 export * from './site$';
 export * from './sitePage';
 export * from './autoRefresh';
 
 let oldUpdatedAt = '';
-site$.subscribe((site) => {
+function onSiteLoaded(site: SiteModel|null) {
   const updatedAt = site?.updatedAt || '';
   if (oldUpdatedAt !== updatedAt) {
     oldUpdatedAt === updatedAt;
     setTitle(site?.title || '...');
-    importND(site?.items || {});
+    importND(site?.items);
   }
-});
+}
+
+site$.subscribe(onSiteLoaded);
 
 export const renderSite = () => {
   render(<RenderFactory id={ROOT_ID} />, document.body);
@@ -36,14 +38,15 @@ export const siteRoute = async (route: RouterValue) => {
   
   if (site$.value?.key !== siteKey) site$.next(null);
 
+  onSiteLoaded(site$.value);
   renderSite();
 
   // return importND(data);
 
   if (isInit || !site$.value) {
     isInit = false;
-    const site = await siteRepo.find({ key: siteKey }, siteProps);
-    site$.next(site);
+    const site = await siteRepo.find({ key: siteKey }, siteProps).catch(() => null);
+    if (site) site$.next(site);
   }
 
   startAutoRefresh();

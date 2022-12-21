@@ -2,7 +2,7 @@
   "extends": "@tsconfig/create-react-app/tsconfig.json",
   "include": ["src/**/*", "../common/src/**/*"],
   "compilerOptions": {
-    "lib": ["ES2019", "DOM"],
+    "lib": ["es2019", "es6", "dom", "webworker"],
     "strict": true,
     "strictNullChecks": true,
     "experimentalDecorators": true,

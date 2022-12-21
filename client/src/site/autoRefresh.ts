@@ -15,7 +15,7 @@ export const stopAutoRefresh = () => {
 
 export const refreshSite = async () => {
     if (!site$.value) return;
-    const site = await siteRepo.get(site$.value.id, siteProps);
-    site$.next(site);
+    const site = await siteRepo.get(site$.value.id, siteProps).catch(() => null);
+    if (site) site$.next(site);
 }
   

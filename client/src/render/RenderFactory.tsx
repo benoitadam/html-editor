@@ -1,5 +1,6 @@
 import { setEl, NClasses } from 'common/box';
-import { createElement, FunctionComponent } from 'react';
+import { h } from 'preact';
+import { FunctionComponent } from 'react';
 import { B } from 'common/box';
 import useB from '~src/hooks/useB';
 import renderActions from './renderActions';
@@ -45,7 +46,7 @@ export const RenderFactory = (props: RenderFactoryProps) => {
   };
 
   // console.debug('RenderFactory', id, t, { props, b, a, render });
-  return createElement(render, { b, a });
+  return h(render as any, { b, a });
 };
 
 export default RenderFactory;
