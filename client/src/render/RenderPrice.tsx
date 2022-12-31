@@ -14,12 +14,10 @@ let renderPrice = ({ b, p, a }: RenderPriceProps) => {
   if (v === null) return null;
   v = Math.round(v * 100) / 100;
   const [int, d] = String(v).split('.');
-  const dec = ',' + (d || '').padEnd(2, '0');
-  a.className = v === 0 ? 'price price-0 ' : 'price ' + a.className;
-  a.dangerouslySetInnerHTML = { __html: `<b>${int}</b><i>${dec}</i><u>€</u>` };
-  return (
-    <span className="price" key={v} {...a} />
-  );
+  const dec = `<i${d?'':' class="dec-0"'}>,${(d || '').padEnd(2, '0')}</i>`;
+  a.className = `${v===0 ? 'price price-0' : 'price'} ${p||''} ${a.className||''}`;
+  a.dangerouslySetInnerHTML = { __html: `<b>${int}</b>${dec}<u>€</u>` };
+  return <span key={v} {...a} />;
 };
 
 export const renderPriceGet = () => renderPrice;

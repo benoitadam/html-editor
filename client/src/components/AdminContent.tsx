@@ -47,6 +47,10 @@ export default () => {
         } else {
           siteRepo.find({ key }, ['id', 'key', 'title', 'items', 'updatedAt']).then(site => {
             site$.next(site);
+            if (key==='demo') {
+              import('../site/demo').then(module => importND(module.default));
+              return;
+            }
             importND(site?.items || {});
           });
         }

@@ -80,17 +80,23 @@ h3 { font-size: 1.2em; padding: 0.3em; }
   align-items: stretch;
 }
 
-.product { width: 100%; padding: 0; margin: 0.2em 0; }
-.product .title { padding: 0.2em; font-weight: bold; }
-.product .info { padding: 0.2em; }
-.product .info2 { padding: 0.2em; }
-.product .desc { padding: 0.2em; }
+.product { padding: 0; margin: 0.2em 0; }
+.product > .row > .title { padding: 0.2em; font-weight: bold; }
+.product > .row > .info { padding: 0.2em; }
+.product > .row > .info2 { padding: 0.2em; }
+.product > .desc { padding: 0.2em; }
 
 .price { padding: 0.2em; }
 .price b { font-size: 1em; }
 .price i { font-size: 0.8em; }
 .price u { font-size: 1em; text-decoration: none; margin-left: 0.2em; }
 .price-0 { visibility: hidden; }
+
+.cl { padding: 0.2em; }
+.cl b { font-size: 1em; font-weight: inherit; }
+.cl i { font-size: 0.8em; }
+.cl u { font-size: 1em; text-decoration: none; }
+.cl-0 { visibility: hidden; }
 
 .carousel {
   overflow: hidden;

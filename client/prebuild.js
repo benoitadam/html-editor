@@ -1,4 +1,10 @@
-require('dotenv').config({ path: require('path').resolve(process.cwd(), '../', '.env') });
+const fs = require('fs');
+const path = require('path');
+
+const envPath = path.resolve(process.cwd(), '../.env');
+
+require('dotenv').config({ path: envPath });
+
 const { version } = require('./package.json');
 const jsonPath = './src/app.generated.json';
 
@@ -19,11 +25,11 @@ const [,, revision] = (app.version||version).split('.');
 app.version = [major, minor, Number(revision||0)+1].join('.');
 
 console.debug({ app });
-require('fs').writeFileSync(jsonPath, JSON.stringify(app, null, 2));
+fs.writeFileSync(jsonPath, JSON.stringify(app, null, 2));
 
 const rm = (path) => {
     try {
-        require('fs').rmSync(path, { recursive: true });
+        fs.rmSync(path, { recursive: true });
     }
     catch (error) {
         if (error.code === 'ENOENT') return;

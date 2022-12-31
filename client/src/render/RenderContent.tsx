@@ -1,5 +1,6 @@
-import { createElement, HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 import { B } from 'common/box';
+import { createElement } from 'preact';
 
 export interface RenderContentProps {
   b: B;
@@ -15,6 +16,7 @@ let renderContent = ({ b, p, t, a }: RenderContentProps) => {
   if (!html) return null;
   if (!a) a = {};
   a.dangerouslySetInnerHTML = { __html: html };
+  a.className = a.className ? `${a.className} ${p}` : p;
   delete (a as any).children;
   return createElement((t as any) || 'div', a);
 };

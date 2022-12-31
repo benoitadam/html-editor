@@ -41,7 +41,7 @@ export const siteRoute = async (route: RouterValue) => {
   onSiteLoaded(site$.value);
   renderSite();
 
-  // return importND(data);
+  if (siteKey === 'demo') return importND((await import('./demo')).default);
 
   if (isInit || !site$.value) {
     isInit = false;

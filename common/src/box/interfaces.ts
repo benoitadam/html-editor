@@ -199,6 +199,10 @@ export interface NFull {
   price: NPrice,
   price2: NPrice,
   price3: NPrice,
+  tPrice: NContent,
+  tPrice2: NContent,
+  tPrice3: NContent,
+  cl: NNumber;
   
   out: boolean,
   del: boolean,

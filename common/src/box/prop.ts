@@ -193,6 +193,7 @@ const map: Record<keyof NFull, Prop> = {
     price: p('nbr'),
     price2: p('nbr'),
     price3: p('nbr'),
+    cl: p('nbr'),
     desc: p('ctn', (b, v) => b.t.desc = v),
     out: p('bool', (b, v) => v && (b.c.out = 1)),
     del: p('bool', (b, v) => v && (b.c.del = 1)),
