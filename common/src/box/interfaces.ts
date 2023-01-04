@@ -211,6 +211,7 @@ export interface NFull {
   bio: boolean,
   aoc: boolean,
   aop: boolean,
+  allergens: string,
 
   lang: string;
 }

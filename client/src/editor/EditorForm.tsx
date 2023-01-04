@@ -107,8 +107,14 @@ export default ({ id }: { id: string }) => {
             <Field p="aop" />
           </Row>
           <Field p="title" />
-          <Field p="info" />
-          <Field p="info2" />
+          <Row>
+            <Field p="info" />
+            <Field p="info2" />
+          </Row>
+          <Row>
+            <Field p="allergens" />
+            <Field p="cl" />
+          </Row>
           <Row>
             <Field p="price" />
             <Field p="price2" />

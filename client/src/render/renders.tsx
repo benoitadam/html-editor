@@ -103,8 +103,9 @@ export const AopIcon = () => <div className="icon aop"><AopSvg /></div>;
 renderAdd('product', ({ b, a }) => (
   <div {...a}>
     <div className="row">
-      <RenderContent t="h4" b={b} p="title" />
+      <RenderContent b={b} p="title" />
       <RenderContent b={b} p="info" />
+      <RenderContent t="sup" b={b} p="allergens" />
       <RenderCl b={b} p="cl" />
       {b.n.vgn && <VgnIcon />}
       {b.n.veg && <VegIcon />}

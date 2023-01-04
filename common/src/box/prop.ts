@@ -1,3 +1,4 @@
+import { toArr, toObj } from "commonhelpers";
 import { dicoMap } from "../helpers/dico";
 import { N, WB, NAliasFull, NFull, ND } from "./interfaces";
 
@@ -193,6 +194,9 @@ const map: Record<keyof NFull, Prop> = {
     price: p('nbr'),
     price2: p('nbr'),
     price3: p('nbr'),
+    tPrice: p('ctn'),
+    tPrice2: p('ctn'),
+    tPrice3: p('ctn'),
     cl: p('nbr'),
     desc: p('ctn', (b, v) => b.t.desc = v),
     out: p('bool', (b, v) => v && (b.c.out = 1)),
@@ -202,6 +206,7 @@ const map: Record<keyof NFull, Prop> = {
     bio: p('bool', (b, v) => v && (b.c.bio = 1)),
     aoc: p('bool', (b, v) => v && (b.c.aoc = 1)),
     aop: p('bool', (b, v) => v && (b.c.aop = 1)),
+    allergens: p('str'),
     lang: p('str', (_, v) => propLangMap[v] = true),
     tr: p('obj'),
 }

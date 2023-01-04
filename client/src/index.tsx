@@ -39,7 +39,7 @@ import { getSitePage, siteRoute, stopAutoRefresh } from './site';
 
   router.forceRefresh();
 
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
     navigator.serviceWorker.register(
       new URL('sw.ts', import.meta.url),
       {type: 'module'}

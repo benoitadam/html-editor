@@ -4,94 +4,14 @@ import app from "~src/app";
 export const cosmo: ND = {
     cls: 'root col',
     css: `
-        html, body { height: 100%; width: 100%; padding: 0; margin: 0; }
-        body, #root {
-            background: #FFF;
-            font-family: sans-serif;
-            font-weight: 400;
-            color: #000;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            position: relative;
-            overflow: hidden;
-            overflow-y: auto;
-        }
-        .btn { cursor: pointer; user-select: none; }
-        .box {
-            display: block;
-            position: relative;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            box-sizing: border-box;
-            font-size: 1em;
-            line-height: 1;
-        }
-        h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0.2em; font-weight: bold; font-size: 1em; }
-        h1 { font-size: 1.6em; padding: 0.5em; }
-        h2 { font-size: 1.4em; padding: 0.4em; }
-        h3 { font-size: 1.2em; padding: 0.3em; }
-        .hidden { display: none; }
-        .row, .col { display: flex; align-items: center; justify-content: space-around; flex-direction: row; }
-        .col { flex-direction: column; align-items: stretch; }
-        @media (max-width: 768px) {
-            .md-row { flex-direction: row; align-items: center; }
-            .md-col { flex-direction: column; align-items: stretch; }
-            .md-col-reverse { flex-direction: column-reverse; }
-            .md-w-full { width: 100%; }
-        }
-        .flex { flex: 1; }
-        .page { flex: 1; display: flex; flex-direction: column; justify-content: space-around; align-items: stretch; }
-        .product { padding: 0; margin: 0.2em 0; }
-        .product > .row > .title { padding: 0.2em; font-weight: bold; }
-        .product > .row > .info { padding: 0.2em; }
-        .product > .row > .info2 { padding: 0.2em; }
-        .product > .desc { padding: 0.2em; }
-        .price { padding: 0.2em; }
-        .price b { font-size: 1em; }
-        .price i { font-size: 0.8em; }
-        .price u { font-size: 1em; text-decoration: none; margin-left: 0.2em; }
-        .price-0 { visibility: hidden; }
-        .cl { padding: 0.2em; }
-        .cl b { font-size: 1em; font-weight: inherit; }
-        .cl i { font-size: 0.8em; }
-        .cl u { font-size: 1em; text-decoration: none; }
-        .cl-0 { visibility: hidden; }
-        .carousel { overflow: hidden; }
-        .carousel > .box { display: none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; transition: all 0.3s ease; }
-        .box.last { display: block; opacity: 0; }
-        .box.curr { display: block; opacity: 1; }
-        .box.next { display: block; opacity: 0; }
-        .anim-none .box.last { display: none; }
-        .anim-none .box.curr { display: block; }
-        .anim-none .box.next { display: none; }
-        .anim-slide .box.last { transform: translateX(100%); }
-        .anim-slide .box.curr { transform: translateX(0%); }
-        .anim-slide .box.next { transform: translateX(-100%); }
-        .anim-zoom .box.last { transform: scale(0); }
-        .anim-zoom .box.curr { transform: scale(1); }
-        .anim-zoom .box.next { transform: scale(0); }
-        .lang { margin: 0.5em; width: 5em; height: 6em; opacity: 0.8; cursor: pointer; }
-        .lang-active { opacity: 1; width: 6em; }
-        .out { text-decoration: line-through; opacity: 0.5; }
-        .del { display: none; }
+        .allergens:before { content: '(' }
+        .allergens:after { content: ')' }
         .icon { display: flex; flex-direction: column; align-items: center; font-weight: bold; margin-right: 0.5em; height: 2em; width: 2em; }
         .icon svg { flex: 1; width: 100%; }
         .icon b { margin: 0 0 -0.5em 0; font-size: 8px; }
         .icon.veg { color: #017f00; fill: #017f00; }
         .icon.vgn { color: #017f00; fill: #017f00; }
         .icon.bio { color: #0f9a3b; fill: #0f9a3b; }
-        body { background: #FFF; }
-        .root {
-            margin: auto;
-            padding: 0.5em;
-            width: 100%;
-            max-width: 100%;
-            min-height: 100%;
-            background: #FFF;
-            font-family: 'Nunito Sans', sans-serif;
-            font-size: 18px;
-        }
         .sep { width: 1em; height: 1em; }
         .nav-bar { flex-wrap: wrap; }
         .nav-bar .btn {
@@ -127,10 +47,8 @@ export const cosmo: ND = {
         .product .info b { color: #e2242d; }
         .product .desc, .product .info, .header .desc { font-size: 0.8em; }
         .section .sep { background: #e2242d; margin: 5px auto; }
-        .price { width: 4.5em; min-width: 4.5em; text-align: right; }
         .icon { height: 1em; width: 1em; }
         body { background: #FFF; }
-        .price, .tPrice, .tPrice2, .tPrice3 { width: 4.5em; min-width: 4.5em; text-align: right; }
         .items-start { align-items: flex-start; }
         .root { margin: auto; background: #FFF; font-family: 'Nunito Sans', sans-serif; justify-content: flex-start; }
         .page { justify-content: flex-start; }
@@ -177,12 +95,12 @@ export const cosmo: ND = {
             font-size: 0.8em;
             width: 8.4em;
         }
-        .footer_icons img { width: 80px }
+        .footer_icons img { flex:1; max-width: 80px; }
         .suggestion { font-size: 2em; padding: 20px 20px; }
         .suggestion h3 { font-size: 2em; font-weight: bold; }
         .lang { margin: 6px; width: 60px; height: 60px; opacity: 0.8; }
         .lang-active { opacity: 1; width: 80px; }
-        .cat { display: flex; align-items: stretch; justify-content: center; flex-direction: column; margin: 0 10px 15px 10px; }
+        .cat { display: flex; align-items: stretch; justify-content: center; flex-direction: column; margin: 0 10px 15px 10px; min-width: 300px; }
         .cat-border { border: 3px solid #e2242d; border-top: 0; }
         .cat-center { align-items: center; }
         .cat .cat { margin: 0 0 15px 0; }
@@ -224,10 +142,9 @@ export const cosmo: ND = {
             margin-right: 5px;
         }*/
         .cols { display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; justify-content: stretch; }
-        .cols .col { flex: 1; min-width: 500px; }
+        .cols .col { flex: 1; min-width: 300px; }
         .center { text-align: center; }
         .italic { font-style: italic; }
-        .margin { margin: 5px; }
     `,
     fontImport: 'Nunito+Sans:wght@400;700',
     homePage: 'accueil',
@@ -235,7 +152,6 @@ export const cosmo: ND = {
         {
             t: 'row',
             id: 'header',
-            h: '130px',
             children: [{
                 cls: 'logo',
                 w: '197px',
@@ -253,6 +169,7 @@ export const cosmo: ND = {
                     { t: 'lang', lang: 'it' },
                     { t: 'lang', lang: 'de' },
                     { t: 'lang', lang: 'ru' },
+                    { t: 'lang', lang: 'nl' },
                     { t: 'img', width: 60, mr: 20, img: 'https://www.lecosmo.numericmenu.com/img/hand_anim_black.gif' },
                 ]
             }]
@@ -267,7 +184,7 @@ export const cosmo: ND = {
             t: 'row',
             children: [
                 { t: 'btn', ctn: 'LA CARTE', onClick: [{ fun: 'setPage', args: ['accueil'] }] },
-                { t: 'btn', ctn: 'PLANCHES<br />À PARTAGER', onClick: [{ fun: 'setPage', args: ['partage'] }] },
+                // { t: 'btn', ctn: 'PLANCHES<br />À PARTAGER', onClick: [{ fun: 'setPage', args: ['partage'] }] },
                 // { t: 'btn', ctn: 'FRUITS<br />DE MER', onClick: [{ fun: 'setPage', args: ['mer'] }] },
                 { t: 'btn', ctn: 'DESSERTS<br />ET THÉS', onClick: [{ fun: 'setPage', args: ['desserts'] }] },
                 { t: 'btn', ctn: 'CARTE<br />NESPRESSO', onClick: [{ fun: 'setPage', args: ['nespresso'] }] },
@@ -287,8 +204,12 @@ export const cosmo: ND = {
                     t: 'row',
                     cls: 'suggestion',
                     children: [
-                        { t: 'ctn', ctn: 'SUGGESTION' },
-                        { t: 'product', w: '600px', title: 'SOLE GRILLÉE OU MEUNIÈRE', desc: 'Légumes Sautés', price: 39.9 },
+                        { t: 'ctn', m:10, ctn: 'SUGGESTION' },
+                        { t: 'col', m:10, flex: 1, fontSize: '0.6em', children: [
+                            { t: 'product', title: 'SOLE GRILLÉE OU MEUNIÈRE', desc: 'Légumes Sautés', price: 39.9 },
+                            { t: 'product', del: true, title: 'Titre', desc: 'Description', price: 0 },
+                            { t: 'product', del: true, title: 'Titre', desc: 'Description', price: 0 },
+                        ]}
                     ]
                 }, {
                     t: 'row',
@@ -313,6 +234,15 @@ export const cosmo: ND = {
                                 { t: 'product', title: 'LA TOMATE COEUR DE BOEUF MOZZARELLA BURRATA', info: 'à l’huile d’olive et basilic frais', price: 18 }
                             ]
                         },
+                        {
+                            t: 'cat',
+                            title: 'Nos planches à partager',
+                            children: [
+                                { t: 'product', title: 'SARDINES À L’HUILE D’OLIVE MILLÉSIME', desc: '(115gr) << RODEL >>', price: 12 },
+                                { t: 'product', title: 'CAMEMBERT RÔTI', desc: 'Piqué à l’ail et au cognac', price: 14 },
+                                { t: 'product', title: 'PIZZA À PARTAGER', desc: '(Demandez la carte)', info2: 'à partir de', price: 13 },
+                            ]
+                        }
                     ]
                 }, {
                     t: 'row',
@@ -341,12 +271,12 @@ export const cosmo: ND = {
                             title: "NOS FRUITS DE MER",
                             children: [
                                 { t: 'ctn', ctn: 'EN RUPTURE' },
-                                { t: 'product', title: 'HUITRES DE MARENNE D’OLERON', hidden: true },
+                                { t: 'product', title: 'HUITRES DE MARENNE D’OLERON', del: true },
                                 {
                                     t: 'cat',
                                     cls: 'cat_header-center',
                                     title: 'Les Spéciales de chez GEAY',
-                                    hidden: true,
+                                    del: true,
                                     children: [
                                         { t: 'product', title: '• LES 6 HUÎTRES N°3', price: 18 },
                                         { t: 'product', title: '• LES 9 HUÎTRES N°3', price: 27 },
@@ -473,21 +403,21 @@ export const cosmo: ND = {
                 },
             ]
         },
-        {
-            t: 'page',
-            page: 'partage',
-            children: [
-                {
-                    t: 'cat',
-                    title: 'Nos planches à partager',
-                    children: [
-                        { t: 'product', title: 'SARDINES À L’HUILE D’OLIVE MILLÉSIME', desc: '(115gr) << RODEL >>', price: 12 },
-                        { t: 'product', title: 'CAMEMBERT RÔTI', desc: 'Piqué à l’ail et au cognac', price: 14 },
-                        { t: 'product', title: 'PIZZA À PARTAGER', desc: '(Demandez la carte)', info2: 'à partir de', price: 13 },
-                    ]
-                },
-            ]
-        },
+        // {
+        //     t: 'page',
+        //     page: 'partage',
+        //     children: [
+        //         {
+        //             t: 'cat',
+        //             title: 'Nos planches à partager',
+        //             children: [
+        //                 { t: 'product', title: 'SARDINES À L’HUILE D’OLIVE MILLÉSIME', desc: '(115gr) << RODEL >>', price: 12 },
+        //                 { t: 'product', title: 'CAMEMBERT RÔTI', desc: 'Piqué à l’ail et au cognac', price: 14 },
+        //                 { t: 'product', title: 'PIZZA À PARTAGER', desc: '(Demandez la carte)', info2: 'à partir de', price: 13 },
+        //             ]
+        //         },
+        //     ]
+        // },
         // {
         //     t: 'page',
         //     page: 'mer',
@@ -671,8 +601,8 @@ export const cosmo: ND = {
             page: 'petit-dejeuner',
             cls: 'cols',
             children: [
-                { t: 'img', img: 'https://www.lecosmo.numericmenu.com/img/menu/fr/pdejeuner-fr-d.jpg' },
-                { t: 'img', img: 'https://www.lecosmo.numericmenu.com/img/menu/fr/pdejeuner-fr-g.jpg' },
+                { t: 'img', flex:1, img: 'https://www.lecosmo.numericmenu.com/img/menu/fr/pdejeuner-fr-d.jpg' },
+                { t: 'img', flex:1, img: 'https://www.lecosmo.numericmenu.com/img/menu/fr/pdejeuner-fr-g.jpg' },
             ]
         },
         {
@@ -1288,6 +1218,8 @@ export const cosmo: ND = {
         {
             t: 'page',
             page: 'enfant',
+            alignItems: 'center',
+            fontSize: '1.3em',
             children: [
                 {
                     t: 'cat',
@@ -1332,9 +1264,9 @@ export const cosmo: ND = {
             t: 'row',
             children: [{
                 cls: 'col',
-                w: 'auto',
+                flex: 1,
                 children: [
-                    { ctn: `RUPTURE:` },
+                    { ctn: `<b>ALLERGÈNES:</b><br>1:Gluten, 2:Crustacés, 3:Œufs, 4:Arachides, 5:Poissons, 6:Soja, 7:Lait, 8:Fruit à coque, 9:Céléri, 10:Moutarde, 11:Sésame, 12:Sulfite, 13:Lupin, 14:Mollusque`, mb: 10 },
                     {
                         t: 'row',
                         cls: 'footer_icons',
@@ -1350,7 +1282,8 @@ export const cosmo: ND = {
                     { ctn: `PRIX NETS - SERVICE COMPRIS`, textAlign: 'center', fontSize: '0.8em' },
                 ]
             }, {
-                ctn: `Demandez la liste des allergènes`
+                ctn: ``,
+                del: true,
             }, {
                 t: 'carousel',
                 w: '314px',

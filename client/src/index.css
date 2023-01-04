@@ -1,22 +1,29 @@
 @import url(normalize.css);
 
-html, body {
-  height: 100%;
-  width: 100%;
+html, body, #root, .root, .page {
+  position: relative;
+  overflow: hidden;
   padding: 0;
   margin: 0;
+  font-size: 18px;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
 }
-
-body, #root {
+html, body {
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+.root {
+  min-height: 100%;
+  overflow-y: auto;
   background: #FFF;
-  font-family: sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-weight: 400;
   color: #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow: hidden;
-  overflow-y: auto;
 }
 
 .btn { cursor: pointer; user-select: none; }
@@ -30,6 +37,7 @@ body, #root {
   box-sizing: border-box;
   font-size: 1em;
   line-height: 1;
+  max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0.2em; font-weight: bold; font-size: 1em; }
@@ -46,6 +54,7 @@ h3 { font-size: 1.2em; padding: 0.3em; }
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .col {
@@ -139,12 +148,13 @@ h3 { font-size: 1.2em; padding: 0.3em; }
   width: 2em;
 }
 .icon svg { flex: 1; width: 100%; }
+
+/* TODO: DELETE */
+
 .icon b { margin: 0 0 -0.5em 0; font-size: 8px; }
 .icon.veg { color: #017f00; fill: #017f00; }
 .icon.vgn { color: #017f00; fill: #017f00; }
 .icon.bio { color: #0f9a3b; fill: #0f9a3b; }
-
-body { background: #FFF; }
 
 .root {
     margin: auto;
@@ -216,7 +226,7 @@ body { background: #FFF; }
 
 .section .sep { background: #e2242d; margin: 5px auto; }
 
-.price { width: 4.5em; min-width: 4.5em; text-align: right; }
+.price, .tPrice, .tPrice2, .tPrice3 { width: 4.5em; min-width: 3.5em; text-align: right; }
 
 .icon-emporter, .icon-bouteille {
   background-image: url('https://labocca.numericmenu.com/assets/icon-emporter.svg');

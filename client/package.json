@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "2.5",
+  "version": "2.7",
   "license": "MIT",
   "includeNodeModules": {},
   "browserslist": "> 0.5%, last 2 versions, not dead",

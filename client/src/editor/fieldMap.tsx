@@ -140,7 +140,11 @@ const map: Record<keyof NFull, (prop: string) => FieldInfo> = {
   price: p('Prix', 'nbr'),
   price2: p('Prix2', 'nbr'),
   price3: p('Prix3', 'nbr'),
+  tPrice: p('Titre Prix', 'ctn'),
+  tPrice2: p('Titre Prix2', 'ctn'),
+  tPrice3: p('Titre Prix3', 'ctn'),
   desc: p('Description', 'ctn'),
+  cl: p('Volume (cl)', 'nbr'),
 
   out: p('Épuisé', 'bool'),
   del: p('Cacher', 'bool'),
@@ -150,6 +154,7 @@ const map: Record<keyof NFull, (prop: string) => FieldInfo> = {
   bio: p('BIO', 'bool'),
   aoc: p('AOC', 'bool'),
   aop: p('AOP', 'bool'),
+  allergens: p('Allergènes', 'str'),
 
   lang: p('Langue (ISO)', 'str'),
   tr: p('Traduction', 'obj'),
@@ -164,5 +169,6 @@ fieldMap.veg.tooltip = 'Aucune chair d’origine animale : viande et poisson';
 fieldMap.bio.tooltip = 'Produit BIO qui exclut l’usage des produits chimiques, OGM, insecticides…';
 fieldMap.aoc.tooltip = 'Produit d’Appellation d’Origine Contrôlée';
 fieldMap.aop.tooltip = 'Produit d’Appellation d’Origine Protégée';
+fieldMap.allergens.tooltip = 'Liste des allergènes';
 
 export default fieldMap;
