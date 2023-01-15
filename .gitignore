@@ -3,6 +3,6 @@
 *.sh
 *.log
 *tmp
-*.private*
+*private*
 *Caddyfile
 server
