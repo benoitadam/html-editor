@@ -1,11 +1,12 @@
-import { toArr, toObj } from "commonhelpers";
 import { dicoMap } from "../helpers/dico";
-import { N, WB, NAliasFull, NFull, ND } from "./interfaces";
+import { N, B, WB, NAliasFull, NFull, ND } from "./interfaces";
 
 export type PropType = 'id' | 'bool' | 'nbr' | 'str' | 'ctn' | 'obj' | 'unit' | 'color' | 'file' | 'event' | 'arr';
 export type PropClean = (value: any) => any;
 export type PropApply = (b: WB, value: any) => void;
 export type Prop = { type: PropType, clean: PropClean, apply?: PropApply };
+
+export const getPropUrl = (b: B, prop: keyof NFull) => b.t[prop] || b.n[prop];
 
 const unit = (v: any): string | undefined => v === null || v === undefined || v === '' ? undefined : typeof v === 'number' ? `${v}px` : String(v);
 
@@ -161,7 +162,7 @@ const map: Record<keyof NFull, Prop> = {
     textTransform: p('str', (b, v) => b.s.textTransform = v),
     letterSpacing: p('nbr', (b, v) => b.s.letterSpacing = v),
     lineHeight: p('str', (b, v) => b.s.lineHeight = v),
-    bgImg: p('file', (b, v) => b.s.backgroundImage = `url('${v}')`),
+    bgImg: p('file', (b) => b.s.backgroundImage = `url('${getPropUrl(b, 'bgImg')}')`),
     bgPos: p('str', (b, v) => b.s.backgroundPosition = v),
     bgPosX: p('str', (b, v) => b.s.backgroundPositionX = v),
     bgPosY: p('str', (b, v) => b.s.backgroundPositionY = v),

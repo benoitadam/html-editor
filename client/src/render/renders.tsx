@@ -1,4 +1,4 @@
-import { setLang, lang$, NClasses, getHomePage } from 'common/box';
+import { setLang, lang$, NClasses, getPropUrl } from 'common/box';
 import { useState } from 'react';
 import useInterval from 'react-use/esm/useInterval';
 import renderActions from './renderActions';
@@ -36,7 +36,7 @@ renderAdd('page', ({ b, a }) => {
 });
 
 renderAdd('img', ({ b, a }) => {
-  const imgUrl = b.n.img;
+  const imgUrl = getPropUrl(b, 'img');
   return imgUrl ? <img {...a} src={imgUrl} alt={b.n.alt} /> : null;
 });
 
