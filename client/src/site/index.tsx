@@ -1,13 +1,13 @@
 import { siteRepo } from 'common/models/gqlRepos';
 import { importND, ROOT_ID } from 'common/box';
 import setTitle from '~src/helpers/setTitle';
-import { render } from 'preact';
 import RenderFactory from '~src/render/RenderFactory';
 import { RouterValue } from '~src/helpers/router';
 import site$ from './site$';
 import siteProps from './siteProps';
 import { startAutoRefresh } from './autoRefresh';
 import { SiteModel } from 'common/models/interfaces';
+import { render } from 'react-dom';
 
 export * from './site$';
 export * from './sitePage';

@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/create-react-app/tsconfig.json",
-  "include": ["src/**/*", "../common/src/**/*"],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "lib": ["es2019", "es6", "dom", "webworker"],
     "strict": true,
@@ -10,9 +10,9 @@
     "baseUrl": ".",
     "paths": {
       "~*": ["./*"],
-      "common*": ["../common/src/*"],
-      "react": ["preact/compat"],
-      "react-dom": ["preact/compat"]
+      "common*": ["./src/common*"],
+      // "react": ["preact/compat"],
+      // "react-dom": ["preact/compat"]
     },
     // "jsx": "preserve",
     // "jsxFactory": "h",

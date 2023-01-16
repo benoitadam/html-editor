@@ -1,5 +1,5 @@
 import app from "../app";
-import { render } from 'preact';
+import { render } from 'react-dom';
 import RenderFactory from "../render/RenderFactory";
 import { ROOT_ID } from "common/box";
 

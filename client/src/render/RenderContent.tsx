@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 import { B } from 'common/box';
-import { createElement } from 'preact';
+import { createElement } from 'react';
 
 export interface RenderContentProps {
   b: B;

@@ -1,4 +1,4 @@
-import { render } from 'preact';
+import { render } from 'react-dom';
 import addFont from '~src/helpers/addFont';
 import { setDefaultOptions } from 'date-fns';
 import dateLocaleFr from 'date-fns/locale/fr';

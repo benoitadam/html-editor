@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 import useInterval from 'react-use/esm/useInterval';
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 import { selectId$ } from '~src/helpers/select';
 import { getN, updateN, getEl, N, NUnit } from 'common/box';
 import { toNbr } from 'common/helpers/to';

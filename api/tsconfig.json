@@ -13,7 +13,7 @@
     "paths": {
       "~*": ["./*"],
       "~..*": [""],
-      "common*": ["../common/src/*"],
+      "common*": ["../client/src/common/*"],
     }
   },
   "exclude": ["node_modules", "dist"]

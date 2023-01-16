@@ -5,12 +5,12 @@
   "includeNodeModules": {},
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "alias": {
-    "common": "../common/src",
+    "common": "./src/common",
     "crypto": "./src/alias/crypto",
     "cross-fetch": "./src/alias/cross-fetch",
-    "preact/jsx-dev-runtime": "preact/jsx-runtime",
-    "react": "preact/compat",
-    "react-dom": "preact/compat"
+    "_preact/jsx-dev-runtime": "preact/jsx-runtime",
+    "_react": "preact/compat",
+    "_react-dom": "preact/compat"
   },
   "targets": {
     "test": {
@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@parcel/reporter-bundle-analyzer": "^2.7.0",
+    "@parcel/service-worker": "^2.8.2",
     "@tsconfig/create-react-app": "^1.0.2",
     "@types/deep-equal": "^1.0.1",
     "@types/jest": "^29.2.3",
@@ -70,7 +71,7 @@
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.2",
-    "@parcel/service-worker": "^2.8.2",
+    "@nhost/react": "^1.13.2",
     "@uiw/react-codemirror": "^4.19.2",
     "date-fns": "^2.29.2",
     "deep-equal": "^2.0.5",
@@ -79,8 +80,6 @@
     "graphql": "^16.6.0",
     "graphql-ws": "^5.9.1",
     "normalize.css": "^8.0.1",
-    "preact": "^10.11.1",
-    "preact-iso": "^2.3.1",
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
